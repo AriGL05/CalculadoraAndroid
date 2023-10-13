@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:background="@color/darkerblue"
             android:layout_weight="2">
-            <TextView
+            <EditText
                 android:labelFor="@+id/operacion"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -26,9 +26,8 @@
                 android:layout_marginRight="10dp"
                 android:textSize="30sp"
                 android:layout_weight="1"
-                android:textAlignment="textEnd"
-                android:text="" />
-            <TextView
+                android:textAlignment="textEnd"/>
+            <EditText
                 android:labelFor="@+id/numbers"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

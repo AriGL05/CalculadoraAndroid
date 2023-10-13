@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private EditText resultado;
+    private StringBuilder input;
+
     TextView numbers, operacion;
     Button button_0, button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8,button_9,
             button_sum, button_res, button_div, button_mul, button_clear, button_fin;
@@ -16,25 +20,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        numbers = findViewById(R.id.numbers);
-        operacion = findViewById(R.id.operacion);
-        findViewById(R.id.button_0).setOnClickListener(this);
-        findViewById(R.id.button_1).setOnClickListener(this);
-        findViewById(R.id.button_2).setOnClickListener(this);
-        findViewById(R.id.button_3).setOnClickListener(this);
-        findViewById(R.id.button_4).setOnClickListener(this);
-        findViewById(R.id.button_5).setOnClickListener(this);
-        findViewById(R.id.button_6).setOnClickListener(this);
-        findViewById(R.id.button_7).setOnClickListener(this);
-        findViewById(R.id.button_8).setOnClickListener(this);
-        findViewById(R.id.button_9).setOnClickListener(this);
-        findViewById(R.id.button_sum).setOnClickListener(this);
-        findViewById(R.id.button_res).setOnClickListener(this);
-        findViewById(R.id.button_div).setOnClickListener(this);
-        findViewById(R.id.button_mul).setOnClickListener(this);
-        findViewById(R.id.button_clear).setOnClickListener(this);
-        findViewById(R.id.button_fin).setOnClickListener(this);
 
+        resultado = findViewById(R.id.numbers);
+        input = new StringBuilder();
+
+        // Set up click listeners for buttons
+        setupButtonClickListeners();
+    }
+
+    private void setupButtonClickListeners() {
+        // Find and set click listeners for digit buttons (0-9)
+        for (int i = 0; i <= 9; i++) {
+            int resId = getResources().getIdentifier("button" + i, "id", getPackageName());
+            Button button = findViewById(resId);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Button clickedButton = (Button) view;
+                    input.append(clickedButton.getText().toString());
+                    resultado.setText(input.toString());
+                }
+            });
+        }
     }
 
 
