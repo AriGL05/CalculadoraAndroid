@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        decimalFormat = new DecimalFormat("#.#####");
 
         operacion = findViewById(R.id.oper);
         numbers = findViewById(R.id.numbers);
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (operacion.getText().length() > 0) {
                     CharSequence currentText = operacion.getText();
+                    numbers.setText("");
                     operacion.setText(currentText.subSequence(0, currentText.length() - 1));
                 } else {
                     firstValue = Double.NaN;
